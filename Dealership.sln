@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31005.135
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dealership.SQL", "Dealership.SQL\Dealership.SQL.csproj", "{76DCDAC6-F64A-4DFA-B015-6D40065405D5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dealership.UI", "Dealership.UI\Dealership.UI.csproj", "{8CA02671-D3A5-4169-9E3C-9C8ED399FDC3}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{76DCDAC6-F64A-4DFA-B015-6D40065405D5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{76DCDAC6-F64A-4DFA-B015-6D40065405D5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{76DCDAC6-F64A-4DFA-B015-6D40065405D5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{76DCDAC6-F64A-4DFA-B015-6D40065405D5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8CA02671-D3A5-4169-9E3C-9C8ED399FDC3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8CA02671-D3A5-4169-9E3C-9C8ED399FDC3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8CA02671-D3A5-4169-9E3C-9C8ED399FDC3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8CA02671-D3A5-4169-9E3C-9C8ED399FDC3}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {8496337D-1BD9-401D-A18F-2D3C46CEE5A8}
+	EndGlobalSection
+EndGlobal
