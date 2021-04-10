@@ -59,9 +59,30 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="View\MenuView.xaml.cs">
-      <DependentUpon>MenuView.xaml</DependentUpon>
+    <Compile Include="Properties\Annotations.cs" />
+    <Compile Include="ViewModel\BaseViewModel.cs" />
+    <Compile Include="ViewModel\Commands\UpdateViewCommand.cs" />
+    <Compile Include="ViewModel\MainViewModel.cs" />
+    <Compile Include="View\CatalogView\CatalogView.xaml.cs">
+      <DependentUpon>CatalogView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\CatalogView\CatalogViewModel.cs" />
+    <Compile Include="View\HomeView\HomeView.xaml.cs">
+      <DependentUpon>HomeView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\HomeView\HomeViewModel.cs" />
+    <Compile Include="View\OrderView\OrderView.xaml.cs">
+      <DependentUpon>OrderView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\OrderView\OrderViewModel.cs" />
+    <Page Include="View\CatalogView\CatalogView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\HomeView\HomeView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -74,7 +95,7 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="View\MenuView.xaml">
+    <Page Include="View\OrderView\OrderView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -105,9 +126,7 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="ViewModels\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <ProjectReference Include="..\Dealership.SQL\Dealership.SQL.csproj">
       <Project>{76dcdac6-f64a-4dfa-b015-6d40065405d5}</Project>

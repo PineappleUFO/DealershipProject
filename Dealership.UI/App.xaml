@@ -2,8 +2,24 @@
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:local="clr-namespace:Dealership.UI"
+             xmlns:homeView="clr-namespace:Dealership.UI.View.HomeView"
+             xmlns:catalogView="clr-namespace:Dealership.UI.View.CatalogView"
+             xmlns:orderView="clr-namespace:Dealership.UI.View.OrderView"
              StartupUri="View/MainWindow.xaml">
     <Application.Resources>
-         
+
+        <DataTemplate DataType="{x:Type homeView:HomeViewModel}">
+            <homeView:HomeView/>
+        </DataTemplate>
+
+        <DataTemplate DataType="{x:Type catalogView:CatalogViewModel}">
+            <catalogView:CatalogView/>
+        </DataTemplate>
+
+
+        <DataTemplate DataType="{x:Type orderView:OrderViewModel}">
+            <orderView:OrderView/>
+        </DataTemplate>
+
     </Application.Resources>
 </Application>

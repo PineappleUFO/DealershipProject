@@ -12,17 +12,8 @@
         <Style TargetType="{x:Type Button}">
             <Setter Property="FontSize" Value="14"/>
             <Setter Property="FontFamily" Value="Verdana"/>
-            <Setter Property="Background" Value="#FFD54F"/>
             <Setter Property="BorderBrush" Value="Transparent"/>
-            <Setter Property="Template">
-                <Setter.Value>
-                    <ControlTemplate TargetType="{x:Type Button}">
-                        <Border>
-                            <ContentPresenter RecognizesAccessKey="True" VerticalAlignment="Center"/>
-                        </Border>
-                    </ControlTemplate>
-                </Setter.Value>
-            </Setter>
+           
         </Style>
     </Window.Resources>
 
@@ -42,7 +33,14 @@
             <Button Width="auto" DockPanel.Dock="Right" Margin="5" HorizontalAlignment="Right">%Setting icon%</Button>
         </DockPanel>
 
-        <view:MenuView Grid.Row="1" Margin="5"/>
+        <StackPanel Grid.Row="1" Grid.Column="0" >
+            <Button FontSize="24" Height="60" Command="{Binding UpdateViewCommand}" CommandParameter="Home">Home</Button>
+            <Button FontSize="24" Height="60" Command="{Binding UpdateViewCommand}" CommandParameter="Order">Navigate Order</Button>
+            <Button FontSize="24" Height="60" Command="{Binding UpdateViewCommand}" CommandParameter="Catalog">Navigate Catalog</Button>
+        </StackPanel>
+
+
+        <ContentControl Grid.Column="1" Grid.Row="1" Content="{Binding SelectedViewModel}"/>
     </Grid>
 
 </Window>
