@@ -44,7 +44,7 @@
 
         <DockPanel Background="#FF8A65" Grid.ColumnSpan="2">
 
-            <Button Width="auto" Height="auto"  DockPanel.Dock="Left" Background="Transparent" BorderThickness="0" Margin="15" HorizontalAlignment="Right">
+            <Button Width="auto" Height="auto"  DockPanel.Dock="Left" Background="Transparent" BorderThickness="0" Margin="15" HorizontalAlignment="Right" Command="{Binding UpdateViewCommand}"  CommandParameter="User">
                 <materialDesign:PackIcon Foreground="White" Kind="Person" Width="auto" Height="auto"/>
             </Button>
 

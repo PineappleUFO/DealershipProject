@@ -83,6 +83,10 @@
       <DependentUpon>OrderView.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\OrderView\OrderViewModel.cs" />
+    <Compile Include="View\UserView\UserView.xaml.cs">
+      <DependentUpon>UserView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\UserView\UserViewModel.cs" />
     <Page Include="View\CatalogView\CatalogView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -104,6 +108,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="View\OrderView\OrderView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\UserView\UserView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

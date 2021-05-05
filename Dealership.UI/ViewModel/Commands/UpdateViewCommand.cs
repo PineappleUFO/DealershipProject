@@ -3,6 +3,7 @@ using Dealership.UI.View.HomeView;
 using Dealership.UI.View.OrderView;
 using System;
 using System.Windows.Input;
+using Dealership.UI.View.UserView;
 
 namespace Dealership.UI.ViewModel.Commands
 {
@@ -34,6 +35,9 @@ namespace Dealership.UI.ViewModel.Commands
                     break;
                 case "Catalog":
                     viewModel.SelectedViewModel = new CatalogViewModel();
+                    break;
+                case "User":
+                    viewModel.SelectedViewModel = new UserViewModel();
                     break;
             }
         }
