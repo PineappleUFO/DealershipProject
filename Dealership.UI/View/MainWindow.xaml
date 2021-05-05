@@ -5,19 +5,31 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Dealership.UI"
         xmlns:view="clr-namespace:Dealership.UI.View"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         mc:Ignorable="d"
+        TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+        TextElement.FontWeight="Regular"
+        TextElement.FontSize="13"
+        TextOptions.TextFormattingMode="Ideal" 
+        TextOptions.TextRenderingMode="Auto"        
+        Background="{DynamicResource MaterialDesignPaper}"
+        FontFamily="{DynamicResource MaterialDesignFont}"
         Title="Дилерский центр" d:DesignHeight="1080" d:DesignWidth="1900">
 
     <Window.Resources>
-        <Style TargetType="{x:Type Button}">
-            <Setter Property="FontSize" Value="14"/>
-            <Setter Property="FontFamily" Value="Verdana"/>
+        <Style TargetType="{x:Type Button}" BasedOn="{StaticResource MaterialDesignRaisedButton}">
+            <Setter Property="FontSize" Value="28"/>
             <Setter Property="BorderBrush" Value="Transparent"/>
-           
+            <Setter Property="Margin" Value="5"/>
+            <Setter Property="Foreground" Value="Black"/>
+            <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+            <Setter Property="Padding" Value="0"/>
+            <Setter Property="Background" Value="Transparent"/>
+
         </Style>
     </Window.Resources>
 
-    <Grid ShowGridLines="True">
+    <Grid  Background="White">
 
         <Grid.RowDefinitions>
             <RowDefinition Height="0.1*"/>
@@ -29,18 +41,58 @@
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
 
+
         <DockPanel Background="#FF8A65" Grid.ColumnSpan="2">
-            <Button Width="auto" DockPanel.Dock="Right" Margin="5" HorizontalAlignment="Right">%Setting icon%</Button>
+
+            <Button Width="auto" Height="auto"  DockPanel.Dock="Left" Background="Transparent" BorderThickness="0" Margin="15" HorizontalAlignment="Right">
+                <materialDesign:PackIcon Foreground="White" Kind="Person" Width="auto" Height="auto"/>
+            </Button>
+
+            <Button Width="auto" Height="auto"  DockPanel.Dock="Right" Background="Transparent" BorderThickness="0" Margin="15" HorizontalAlignment="Right">
+                <materialDesign:PackIcon Foreground="White" Kind="Settings" Width="auto" Height="auto"/>
+            </Button>
+
         </DockPanel>
 
-        <StackPanel Grid.Row="1" Grid.Column="0" >
-            <Button FontSize="24" Height="60" Command="{Binding UpdateViewCommand}" CommandParameter="Home">Home</Button>
-            <Button FontSize="24" Height="60" Command="{Binding UpdateViewCommand}" CommandParameter="Order">Navigate Order</Button>
-            <Button FontSize="24" Height="60" Command="{Binding UpdateViewCommand}" CommandParameter="Catalog">Navigate Catalog</Button>
-        </StackPanel>
+        <materialDesign:Card Background="#E3E3E3" materialDesign:ShadowAssist.ShadowDepth="Depth2" Grid.Row="1" Grid.Column="0" Margin="15" Padding="15" UniformCornerRadius="20">
+            <DockPanel >
 
 
-        <ContentControl Grid.Column="1" Grid.Row="1" Content="{Binding SelectedViewModel}"/>
+                <Button materialDesign:ShadowAssist.ShadowDepth="Depth0"  DockPanel.Dock="Top"  Height="60" Command="{Binding UpdateViewCommand}"  CommandParameter="Home" >
+                    <Border Background="White" CornerRadius="10" >
+                        <StackPanel x:Name="stackPanel" Orientation="Horizontal" HorizontalAlignment="Stretch">
+                            <materialDesign:PackIcon Foreground="#FF8A65" Margin="5" DockPanel.Dock="Left" Kind="Home" Height="auto" Width="auto" HorizontalAlignment="Left"/>
+                            <Label Margin="10 0 0 0"  VerticalAlignment="Center"  >Домой</Label>
+                        
+                    </StackPanel>
+                    </Border>
+                </Button>
+
+                <Button materialDesign:ShadowAssist.ShadowDepth="Depth0" DockPanel.Dock="Top"  Height="60" Command="{Binding UpdateViewCommand}" CommandParameter="Catalog">
+                    <Border Background="White" CornerRadius="10">
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch">
+                            <materialDesign:PackIcon Foreground="#FF8A65" Margin="5" DockPanel.Dock="Left" Kind="CarMultiple" Height="auto" Width="auto" HorizontalAlignment="Left"/>
+                            <Label Margin="10 0 0 0"  VerticalAlignment="Center">Каталог</Label>
+                        </StackPanel>
+                    </Border>
+                </Button>
+
+
+                <Button materialDesign:ShadowAssist.ShadowDepth="Depth0" DockPanel.Dock="Bottom" VerticalAlignment="Bottom"  Height="60" Command="{Binding UpdateViewCommand}" CommandParameter="Order">
+                    <Border Background="White" CornerRadius="10">
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch">
+                            <materialDesign:PackIcon Foreground="#FF8A65" Margin="5" DockPanel.Dock="Left" Kind="Trolley" Height="auto" Width="auto" HorizontalAlignment="Left"/>
+                            <Label Margin="10 0 0 0"  VerticalAlignment="Center">Заказы</Label>
+                        </StackPanel>
+                    </Border>
+                </Button>
+            </DockPanel>
+        </materialDesign:Card>
+
+        <materialDesign:Card Padding="5" Background="#E3E3E3" Grid.Column="1" Grid.Row="1" Margin="15" UniformCornerRadius="20" materialDesign:ShadowAssist.ShadowDepth="Depth2">
+            <ContentControl BorderThickness="0"  Content="{Binding SelectedViewModel}"/>
+        </materialDesign:Card>
+
     </Grid>
 
 </Window>

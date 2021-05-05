@@ -5,21 +5,32 @@
              xmlns:homeView="clr-namespace:Dealership.UI.View.HomeView"
              xmlns:catalogView="clr-namespace:Dealership.UI.View.CatalogView"
              xmlns:orderView="clr-namespace:Dealership.UI.View.OrderView"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              StartupUri="View/MainWindow.xaml">
     <Application.Resources>
 
-        <DataTemplate DataType="{x:Type homeView:HomeViewModel}">
-            <homeView:HomeView/>
-        </DataTemplate>
+        <ResourceDictionary >
+            <ResourceDictionary.MergedDictionaries>
+                <materialDesign:BundledTheme BaseTheme="Light" PrimaryColor="Yellow" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Defaults.xaml" />
 
-        <DataTemplate DataType="{x:Type catalogView:CatalogViewModel}">
-            <catalogView:CatalogView/>
-        </DataTemplate>
+            </ResourceDictionary.MergedDictionaries>
 
 
-        <DataTemplate DataType="{x:Type orderView:OrderViewModel}">
-            <orderView:OrderView/>
-        </DataTemplate>
+            <DataTemplate DataType="{x:Type homeView:HomeViewModel}">
+                <homeView:HomeView/>
+            </DataTemplate>
+
+            <DataTemplate DataType="{x:Type catalogView:CatalogViewModel}">
+                <catalogView:CatalogView/>
+            </DataTemplate>
+
+
+            <DataTemplate DataType="{x:Type orderView:OrderViewModel}">
+                <orderView:OrderView/>
+            </DataTemplate>
+
+        </ResourceDictionary>
 
     </Application.Resources>
 </Application>
