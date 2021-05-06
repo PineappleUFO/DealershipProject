@@ -12,7 +12,7 @@ namespace Dealership.SQL.Models.PersonModel
         /// <summary>
         /// Дата рождения
         /// </summary>
-        DateTime DateOfBirthdate { get; set; }
+        string DateOfBirthdate { get; set; }
 
         /// <summary>
         /// Телефон

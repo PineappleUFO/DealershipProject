@@ -17,12 +17,12 @@ namespace Dealership.SQL.Models.TaskModel
         /// <summary>
         /// Дата начала задачи
         /// </summary>
-        DateTime DateStart { get; set; }
+        string DateStart { get; set; }
 
         /// <summary>
         /// Дата завершения задачи
         /// </summary>
-        DateTime DateEnd { get; set; }
+        string DateEnd { get; set; }
 
         /// <summary>
         /// Подробное описание задачи

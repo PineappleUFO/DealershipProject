@@ -11,7 +11,7 @@ namespace Dealership.SQL.Models.PersonModel.Buyer
     {
         public long ID { get; set; }
         public string FullName { get; set; }
-        public DateTime DateOfBirthdate { get; set; }
+        public string DateOfBirthdate { get; set; }
         public string Phone { get; set; }
         public long MoneyCount { get; set; }
         public IEnumerable<ICar> CarsBought { get; set; }

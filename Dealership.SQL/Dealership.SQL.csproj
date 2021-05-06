@@ -81,9 +81,12 @@
     <Compile Include="Models\TaskModel\TaskTypes.cs" />
     <Compile Include="Models\TransactionModel\TransactionTypes.cs" />
     <Compile Include="Models\TransactionModel\ITransaction.cs" />
+    <Compile Include="Repository\PersonRepository.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Repositoryes\" />
+    <Content Include="SQLite.Interop.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

@@ -8,7 +8,7 @@ namespace Dealership.SQL.Models.PersonModel.Employee
     {
         public long ID { get; set; }
         public string FullName { get; set; }
-        public DateTime DateOfBirthdate { get; set; }
+        public string DateOfBirthdate { get; set; }
         public string Phone { get; set; }
         public bool Equial(IPerson person)
         {

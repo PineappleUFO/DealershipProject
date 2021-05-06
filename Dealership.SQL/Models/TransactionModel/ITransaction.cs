@@ -16,7 +16,7 @@ namespace Dealership.SQL.Models.TransactionModel
         /// <summary>
         /// Дата транзакции
         /// </summary>
-        DateTime TransactionDate { get; set; }
+        string TransactionDate { get; set; }
     }
 }
 

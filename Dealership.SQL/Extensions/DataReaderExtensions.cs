@@ -18,6 +18,7 @@ namespace Dealership.SQL.Extensions
             if (obj is DBNull)
                 return default;
 
+
             if (obj is T value)
                 return value;
 
