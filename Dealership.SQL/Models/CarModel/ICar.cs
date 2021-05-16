@@ -9,6 +9,7 @@ namespace Dealership.SQL.Models.CarModel
         /// </summary>
         IEquipment Equipment { get; set; }
 
+        string Name { get; set; }
         /// <summary>
         /// Стоимость
         /// </summary>
@@ -18,5 +19,11 @@ namespace Dealership.SQL.Models.CarModel
         /// Машин в налии
         /// </summary>
         int Count { get; set; }
+
+        /// <summary>
+        /// Цвет
+        /// </summary>
+        ColorStruct Color { get; set; }
+
     }
 }

@@ -1,16 +1,16 @@
 ﻿namespace Dealership.SQL.Models.CarModel.Equipment
 {
-    public interface IEquipment : IEntity, IEngine, IExtras
+    public interface IEquipment 
     {
         /// <summary>
         /// Двигатель
         /// </summary>
-        IEngine Engine { get; set; }
+        EngineModel Engine { get; set; }
 
         /// <summary>
         /// Комплектация
         /// </summary>
-        IExtras Extras { get; set; }
+        ExtrasModel Extras { get; set; }
 
         IEquipment GetEquipment();
     }

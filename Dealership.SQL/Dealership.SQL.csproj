@@ -61,9 +61,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Common\SqliteConnectionString.cs" />
-    <Compile Include="Extensions\DataReaderExtensions.cs" />
     <Compile Include="Extensions\ExceptionExtensions.cs" />
     <Compile Include="Models\CarModel\CarModel.cs" />
+    <Compile Include="Models\CarModel\ColorStruct.cs" />
+    <Compile Include="Models\CarModel\Equipment\EngineModel.cs" />
+    <Compile Include="Models\CarModel\Equipment\EquipmentModel.cs" />
+    <Compile Include="Models\CarModel\Equipment\ExtrasModel.cs" />
     <Compile Include="Models\IEntity.cs" />
     <Compile Include="Models\PersonModel\Buyer\BuyerModel.cs" />
     <Compile Include="Models\PersonModel\Employee\EmployeeModel.cs" />
@@ -81,6 +84,7 @@
     <Compile Include="Models\TaskModel\TaskTypes.cs" />
     <Compile Include="Models\TransactionModel\TransactionTypes.cs" />
     <Compile Include="Models\TransactionModel\ITransaction.cs" />
+    <Compile Include="Repository\CarRepository.cs" />
     <Compile Include="Repository\PersonRepository.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -91,7 +95,7 @@
   <ItemGroup>
     <None Include="App.config" />
     <None Include="DealerDB.db">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="packages.config" />
   </ItemGroup>

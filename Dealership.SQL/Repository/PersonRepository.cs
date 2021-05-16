@@ -29,7 +29,7 @@ namespace Dealership.SQL.Repository
                         using (var reader = command.ExecuteReader())
                         {
                             while (reader.Read())
-                                tempListPerson.Add(new BuyerModel() { ID = reader.ReadAs<long>("ID"), FullName = reader.ReadAs<string>("FIO"), DateOfBirthdate = reader.ReadAs<string>("DateOfBirthday") });
+                                tempListPerson.Add(new BuyerModel() { ID = Convert.ToInt64(reader["ID"]), FullName = reader["FIO"].ToString(), DateOfBirthdate = reader["DateOfBirthday"].ToString() });
                         }
                     }
                 }

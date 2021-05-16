@@ -11,5 +11,10 @@
         /// Расход на 100 км
         /// </summary>
         double Expenditure { get; set; }
+
+        /// <summary>
+        /// Наименование движка
+        /// </summary>
+        string Name { get; set; }
     }
 }

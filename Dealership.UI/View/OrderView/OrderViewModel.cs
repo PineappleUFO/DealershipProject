@@ -1,4 +1,5 @@
-﻿using Dealership.UI.ViewModel;
+﻿using Dealership.UI.MVVM;
+using Dealership.UI.ViewModel;
 
 namespace Dealership.UI.View.OrderView
 {

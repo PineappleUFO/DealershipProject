@@ -6,6 +6,7 @@
         xmlns:local="clr-namespace:Dealership.UI"
         xmlns:view="clr-namespace:Dealership.UI.View"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:converters="clr-namespace:Dealership.UI.Converters"
         mc:Ignorable="d"
         TextElement.Foreground="{DynamicResource MaterialDesignBody}"
         TextElement.FontWeight="Regular"
@@ -17,6 +18,7 @@
         Title="Дилерский центр" d:DesignHeight="1080" d:DesignWidth="1900">
 
     <Window.Resources>
+     
         <Style TargetType="{x:Type Button}" BasedOn="{StaticResource MaterialDesignRaisedButton}">
             <Setter Property="FontSize" Value="28"/>
             <Setter Property="BorderBrush" Value="Transparent"/>

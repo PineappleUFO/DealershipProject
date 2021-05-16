@@ -1,4 +1,5 @@
 ﻿using System.Windows.Input;
+using Dealership.UI.MVVM;
 using Dealership.UI.View.HomeView;
 using Dealership.UI.ViewModel.Commands;
 
@@ -10,11 +11,7 @@ namespace Dealership.UI.ViewModel
         public BaseViewModel SelectedViewModel
         {
             get => _selectedViewModel;
-            set
-            {
-                _selectedViewModel = value;
-                OnPropertyChanged(nameof(SelectedViewModel));
-            }
+            set => SetProperty(ref _selectedViewModel, value);
         }
         public ICommand UpdateViewCommand { get; set; }
 
