@@ -8,6 +8,6 @@ namespace Dealership.SQL.Common
 {
     internal static class SqliteConnectionString
     {
-        public static string ConnectionString { get; } = @"Data Source=.\DealerDB.db; Version=3;";
+        public static string ConnectionString { get; } = @"Data Source=C:\DB\DealerDB.db; Version=3;";
     }
 }

@@ -68,10 +68,15 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Converters\StringToColorConverter.cs" />
+    <Compile Include="MVVM\Commands\DelegateCommand.cs" />
     <Compile Include="Properties\Annotations.cs" />
     <Compile Include="MVVM\BaseViewModel.cs" />
-    <Compile Include="ViewModel\Commands\UpdateViewCommand.cs" />
+    <Compile Include="MVVM\Commands\UpdateViewCommand.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
+    <Compile Include="View\CatalogView\CatalogEditOrAdd\CatalogEditOrAddView.xaml.cs">
+      <DependentUpon>CatalogEditOrAddView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\CatalogView\CatalogEditOrAdd\CatalogEditOrAddViewModel.cs" />
     <Compile Include="View\CatalogView\CatalogView.xaml.cs">
       <DependentUpon>CatalogView.xaml</DependentUpon>
     </Compile>
@@ -88,6 +93,10 @@
       <DependentUpon>UserView.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\UserView\UserViewModel.cs" />
+    <Page Include="View\CatalogView\CatalogEditOrAdd\CatalogEditOrAddView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\CatalogView\CatalogView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

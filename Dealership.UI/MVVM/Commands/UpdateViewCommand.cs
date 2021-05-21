@@ -1,11 +1,12 @@
-﻿using Dealership.UI.View.CatalogView;
+﻿using System;
+using System.Windows.Input;
+using Dealership.UI.View.CatalogView;
 using Dealership.UI.View.HomeView;
 using Dealership.UI.View.OrderView;
-using System;
-using System.Windows.Input;
 using Dealership.UI.View.UserView;
+using Dealership.UI.ViewModel;
 
-namespace Dealership.UI.ViewModel.Commands
+namespace Dealership.UI.MVVM.Commands
 {
     public class UpdateViewCommand : ICommand
     {

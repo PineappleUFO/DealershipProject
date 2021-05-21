@@ -1,0 +1,121 @@
+﻿<Window x:Class="Dealership.UI.View.CatalogView.CatalogEditOrAdd.CatalogEditOrAddView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Dealership.UI.View.CatalogView.CatalogEditOrAdd"
+        xmlns:converters="clr-namespace:Dealership.UI.Converters"
+        mc:Ignorable="d"
+        TextElement.FontWeight="Regular"
+        TextElement.FontSize="13"
+        TextOptions.TextFormattingMode="Ideal" 
+        TextOptions.TextRenderingMode="Auto"        
+        FontFamily="{DynamicResource MaterialDesignFont}"
+        Title="Добавление/Изменение автомобиля" Height="750" Width="800">
+    <Window.Resources>
+        <Style TargetType="{x:Type CheckBox}">
+            <Setter Property="FontSize" Value="14"/>
+        </Style>
+
+        <converters:StringToColorConverter x:Key="StringToColorConverter"/>
+    </Window.Resources>
+
+    <Window.DataContext>
+        <local:CatalogEditOrAddViewModel/>
+    </Window.DataContext>
+    <Grid x:Name="grid">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="0.3*"/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+
+        <Label Grid.Row="0" Grid.Column="0"  Grid.ColumnSpan="2" FontSize="24" HorizontalAlignment="Center" FontWeight="Bold">Добавление/Изменение автомобиля</Label>
+
+        <Label Grid.Row="1" Grid.Column="0" FontWeight="Bold" VerticalAlignment="Center" FontSize="16">Наименование авто</Label>
+
+        <TextBox Grid.Row="1" VerticalAlignment="Center"  Grid.Column="1" FontSize="16" Margin="5"  DataContext="{ Binding CurrentCar}" Text="{Binding Name}"/>
+
+        <Label Grid.Row="2" Grid.Column="0" FontWeight="Bold" VerticalAlignment="Center" FontSize="16">Двигатель</Label>
+
+        <StackPanel Margin="2" Grid.Row="2" Visibility="{Binding SelectEngineVisibility}" Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center"  >
+            <Label FontWeight="Bold" VerticalAlignment="Center" FontSize="16">Выбрать двигатель</Label>
+            <ComboBox MinWidth="200" SelectedValuePath="ID" DisplayMemberPath="Name" ItemsSource="{Binding AllEngines}" SelectedItem="" SelectedIndex="{Binding CurrentCar.Equipment.Engine.ID}"  HorizontalContentAlignment="Center"></ComboBox>
+            <Label FontWeight="Bold" VerticalAlignment="Center" Margin="5" HorizontalAlignment="Center" FontSize="16">или</Label>
+            <Button Command="{ Binding AddNewEngine}" >Добавить двигатель</Button>
+        </StackPanel>
+
+        <StackPanel  Margin="2" Grid.Row="2" Grid.Column="1" Visibility="{Binding AddEngineVisibility}"  HorizontalAlignment="Center" VerticalAlignment="Center" >
+
+            <StackPanel Orientation="Horizontal" Margin="2" HorizontalAlignment="Right" DataContext="{Binding NewEngine}">
+                <Label VerticalAlignment="Center" FontSize="16">Наименование</Label>
+                <TextBox Width="200" Text="{Binding Name,Delay=200,UpdateSourceTrigger=PropertyChanged}"></TextBox>
+            </StackPanel>
+
+            <StackPanel Orientation="Horizontal" Margin="2" HorizontalAlignment="Right"  DataContext="{Binding NewEngine}">
+                <Label VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="16" >Мощность</Label>
+                <TextBox Width="200" HorizontalAlignment="Right" Text="{Binding Power,Delay=200,UpdateSourceTrigger=PropertyChanged}"></TextBox>
+            </StackPanel>
+
+            <StackPanel Orientation="Horizontal" Margin="2" HorizontalAlignment="Right"  DataContext="{Binding NewEngine}">
+                <Label VerticalAlignment="Center"  HorizontalAlignment="Center" FontSize="16" >Расход</Label>
+                <TextBox Width="200" Text="{Binding Expenditure,Delay=200,UpdateSourceTrigger=PropertyChanged}"></TextBox>
+            </StackPanel>
+            <Button  Background="#87F892" Margin="2" Command="{Binding SaveEngineInDB}">Ок</Button>
+            <Button   Margin="2" Command="{Binding BackEngine}">Назад</Button>
+        </StackPanel>
+
+        <Label Grid.Row="3" Grid.Column="0" FontWeight="Bold" VerticalAlignment="Center" FontSize="16">Доп опции</Label>
+
+        <StackPanel Margin="2" Grid.Row="3" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center"  DataContext="{ Binding CurrentCar}">
+            <CheckBox Content="Android мультимедиа" IsChecked="{Binding Path=Equipment.Extras.AndroidSystem}"/>
+            <CheckBox Content="Литые диски" IsChecked="{Binding Path=Equipment.Extras.CastWheel}"/>
+            <CheckBox Content="Круиз контроль" IsChecked="{Binding Path=Equipment.Extras.CruiseControl}"/>
+        </StackPanel>
+
+        <Label Grid.Row="4" Grid.Column="0" FontWeight="Bold" VerticalAlignment="Center" FontSize="16">Цвет</Label>
+
+        <StackPanel Margin="2" Grid.Row="4" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center"  >
+            <StackPanel Orientation="Horizontal">
+                <Label>Наименование цвета</Label>
+                <TextBox Width="200" Text="{Binding NameColor}"/>
+            </StackPanel>
+
+            <StackPanel Orientation="Horizontal">
+                <Label>Код цвета</Label>
+                <TextBox x:Name="txtColorCode" Text="{Binding CodeColor}" Width="80"/>
+                <Rectangle Margin="2" Width="20" Height="20" VerticalAlignment="Center" HorizontalAlignment="Right" Fill="{Binding ElementName=txtColorCode,Path=Text,Converter={StaticResource StringToColorConverter}}"/>
+            </StackPanel>
+        </StackPanel>
+
+        <Label Grid.Row="5" Grid.Column="0" FontWeight="Bold" VerticalAlignment="Center" FontSize="16">Стоимость</Label>
+        <TextBox Grid.Row="5" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Stretch" Margin="5" FontSize="16" Text="{Binding Cost}"  DataContext="{ Binding CurrentCar}"></TextBox>
+
+        <Label Grid.Row="6" Grid.Column="0" FontWeight="Bold" VerticalAlignment="Center" FontSize="16">В наличии</Label>
+        <TextBox Grid.Row="6" Grid.Column="1" Text="{Binding Count}" VerticalAlignment="Center" HorizontalAlignment="Stretch" Margin="5" FontSize="16"  DataContext="{ Binding CurrentCar}"></TextBox>
+
+        <Label Grid.Row="7" Grid.Column="0" FontWeight="Bold" VerticalAlignment="Center" FontSize="16">Изображение</Label>
+
+        <StackPanel Grid.Row="7" Grid.Column="1" Margin="5" VerticalAlignment="Center">
+        <Button  Command="{Binding AddPhoto}">Добавить фотографию</Button>
+            <Label Content="{Binding FileInfoPhoto.FullName}"/>
+        </StackPanel>
+
+        <StackPanel Orientation="Horizontal" Grid.Row="8" Grid.Column="0" HorizontalAlignment="Center" Grid.ColumnSpan="2" >
+            <Button Width="120" Margin="5" Background="#F88787" FontSize="16" >Отмена</Button>
+            <Button Width="120" Margin="5" Background="#87F892" FontSize="16" Command="{Binding AddCarInDB}">Применить</Button>
+        </StackPanel>
+    </Grid>
+</Window>
+

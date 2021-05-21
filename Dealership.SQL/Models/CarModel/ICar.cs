@@ -1,9 +1,12 @@
-﻿using Dealership.SQL.Models.CarModel.Equipment;
+﻿using System.Windows.Media;
+using System.Windows.Media.Imaging;
+using Dealership.SQL.Models.CarModel.Equipment;
 
 namespace Dealership.SQL.Models.CarModel
 {
     public interface ICar
     {
+         long  ID { get; set; }
         /// <summary>
         /// Характеристики и комплектация
         /// </summary>
@@ -24,6 +27,8 @@ namespace Dealership.SQL.Models.CarModel
         /// Цвет
         /// </summary>
         ColorStruct Color { get; set; }
+
+        BitmapImage Photo { get; set; }
 
     }
 }

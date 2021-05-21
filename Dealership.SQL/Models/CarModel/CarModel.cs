@@ -1,5 +1,7 @@
 ﻿using Dealership.SQL.Models.CarModel.Equipment;
 using System;
+using System.Windows.Media;
+using System.Windows.Media.Imaging;
 
 namespace Dealership.SQL.Models.CarModel
 {
@@ -17,5 +19,6 @@ namespace Dealership.SQL.Models.CarModel
         public long Cost { get; set; }
         public int Count { get; set; }
         public ColorStruct Color { get; set; }
+        public BitmapImage Photo { get; set; }
     }
 }

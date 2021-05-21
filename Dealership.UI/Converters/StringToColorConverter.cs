@@ -17,7 +17,12 @@ namespace Dealership.UI.Converters
             {
                 if (!string.IsNullOrEmpty(str))
                 {
-                    return (SolidColorBrush)(new BrushConverter().ConvertFrom($"#{str}"));
+                    if(new BrushConverter().IsValid($"#{str}"))
+                        return (SolidColorBrush)(new BrushConverter().ConvertFrom($"#{str}"));
+                    else
+                    {
+                        return new SolidColorBrush(Colors.Black);
+                    }
                 }
 
                 return default;

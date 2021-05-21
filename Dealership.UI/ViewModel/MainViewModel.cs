@@ -1,7 +1,7 @@
 ﻿using System.Windows.Input;
 using Dealership.UI.MVVM;
+using Dealership.UI.MVVM.Commands;
 using Dealership.UI.View.HomeView;
-using Dealership.UI.ViewModel.Commands;
 
 namespace Dealership.UI.ViewModel
 {
