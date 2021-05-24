@@ -17,6 +17,9 @@ namespace Dealership.SQL.Models.TransactionModel
         /// Дата транзакции
         /// </summary>
         string TransactionDate { get; set; }
+
+         string EmployeeName { get; set; }
+
     }
 }
 

@@ -6,8 +6,7 @@
              xmlns:catalogView="clr-namespace:Dealership.UI.View.CatalogView"
              xmlns:orderView="clr-namespace:Dealership.UI.View.OrderView"
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
-             xmlns:userView="clr-namespace:Dealership.UI.View.UserView"
-             StartupUri="View/MainWindow.xaml">
+             xmlns:userView="clr-namespace:Dealership.UI.View.UserView">
     <Application.Resources>
 
         <ResourceDictionary >

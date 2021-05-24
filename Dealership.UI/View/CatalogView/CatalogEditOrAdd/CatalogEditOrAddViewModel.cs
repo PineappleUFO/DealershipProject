@@ -103,6 +103,10 @@ namespace Dealership.UI.View.CatalogView.CatalogEditOrAdd
         /// </summary>
         public CatalogEditOrAddViewModel()
         {
+            CurrentCar = new CarModel();
+            CurrentCar.Equipment = new EquipmentModel();
+            CurrentCar.Equipment.Engine = new EngineModel();
+            CurrentCar.Equipment.Extras = new ExtrasModel();
             IsEdit = false;
             InitCommandAndEngine();
         }
@@ -125,11 +129,11 @@ namespace Dealership.UI.View.CatalogView.CatalogEditOrAdd
            {
                if (!IsEdit)
                {
-                   carRepository.AddNewCarInDb(CurrentCar, photoBytes);
-               }
-               else
-               {
-                   carRepository.EditCarInDb(CurrentCar, photoBytes);
+                  var result = carRepository.AddNewCarInDb(CurrentCar, photoBytes);
+                  if (result)
+                  {
+                      MessageBox.Show($"Машина {CurrentCar.Name} успешно добавленна в базу данных");
+                  }
                }
            }
            catch (Exception e)

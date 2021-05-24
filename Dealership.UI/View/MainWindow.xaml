@@ -46,13 +46,7 @@
 
         <DockPanel Background="#FF8A65" Grid.ColumnSpan="2">
 
-            <Button Width="auto" Height="auto"  DockPanel.Dock="Left" Background="Transparent" BorderThickness="0" Margin="15" HorizontalAlignment="Right" Command="{Binding UpdateViewCommand}"  CommandParameter="User">
-                <materialDesign:PackIcon Foreground="White" Kind="Person" Width="auto" Height="auto"/>
-            </Button>
-
-            <Button Width="auto" Height="auto"  DockPanel.Dock="Right" Background="Transparent" BorderThickness="0" Margin="15" HorizontalAlignment="Right">
-                <materialDesign:PackIcon Foreground="White" Kind="Settings" Width="auto" Height="auto"/>
-            </Button>
+          
 
         </DockPanel>
 
@@ -92,7 +86,7 @@
         </materialDesign:Card>
 
         <materialDesign:Card Padding="5" Background="#E3E3E3" Grid.Column="1" Grid.Row="1" Margin="15" UniformCornerRadius="20" materialDesign:ShadowAssist.ShadowDepth="Depth2">
-            <ContentControl BorderThickness="0"  Content="{Binding SelectedViewModel}"/>
+            <ContentControl BorderThickness="0" Margin="10"   Content="{Binding SelectedViewModel}"/>
         </materialDesign:Card>
 
     </Grid>

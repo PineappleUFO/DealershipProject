@@ -81,6 +81,7 @@
       <DependentUpon>CatalogView.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\CatalogView\CatalogViewModel.cs" />
+    <Compile Include="View\EnumSelectedPerson.cs" />
     <Compile Include="View\HomeView\HomeView.xaml.cs">
       <DependentUpon>HomeView.xaml</DependentUpon>
     </Compile>
@@ -89,6 +90,9 @@
       <DependentUpon>OrderView.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\OrderView\OrderViewModel.cs" />
+    <Compile Include="View\SelectPerson.xaml.cs">
+      <DependentUpon>SelectPerson.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\UserView\UserView.xaml.cs">
       <DependentUpon>UserView.xaml</DependentUpon>
     </Compile>
@@ -118,6 +122,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="View\OrderView\OrderView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\SelectPerson.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

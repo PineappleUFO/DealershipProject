@@ -10,6 +10,8 @@ using System.IO;
 using System.Reflection;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using Dealership.SQL.Models.PersonModel;
+using Dealership.SQL.Models.PersonModel.Buyer;
 
 namespace Dealership.SQL.Repository
 {
@@ -69,45 +71,7 @@ namespace Dealership.SQL.Repository
             return tempListCars;
         }
 
-        private BitmapImage GetPhotoFromBd(long IdCar)
-        {
-            byte[] _dbImageBytes = null;
-            using (SQLiteConnection Connection = new SQLiteConnection(SqliteConnectionString.ConnectionString))
-            {
-                Connection.Open();
-                string Querry = $"select photo from cars where id='{IdCar}'";
-               
-
-                using (var command = new SQLiteCommand(Querry, Connection))
-                {
-                    using (var reader = command.ExecuteReader())
-                    {
-                        while (reader.Read())
-                        {
-                            if(reader["photo"]!=DBNull.Value)
-                                _dbImageBytes = (byte[]) reader["photo"];
-                        }
-                    }
-                }
-            }
-
-            if (_dbImageBytes == null) return null;
-
-            var image = new BitmapImage();
-            using (var mem = new MemoryStream(_dbImageBytes))
-            {
-                mem.Position = 0;
-                image.BeginInit();
-                image.CreateOptions = BitmapCreateOptions.PreservePixelFormat;
-                image.CacheOption = BitmapCacheOption.OnLoad;
-                image.UriSource = null;
-                image.StreamSource = mem;
-                image.EndInit();
-            }
-            image.Freeze();
-            return image;
-
-        }
+       
 
         /// <summary>
         /// Получить список всех двигателей
@@ -251,102 +215,6 @@ namespace Dealership.SQL.Repository
             return result;
         }
 
-
-        /// <summary>
-        /// Изменяем машину в БД
-        /// </summary>
-        public bool EditCarInDb(ICar car, byte[] imageByte)
-        {
-            bool result = false;
-
-            if (string.IsNullOrWhiteSpace(car.Name))
-            {
-                throw new Exception().FromMethod($"Значение {nameof(car.Name)} не может быть пустым", MethodBase.GetCurrentMethod());
-            }
-
-            if (car.Cost < 100000)
-            {
-                throw new Exception().FromMethod($"Значение {nameof(car.Cost)} не может быть меньше 100 000", MethodBase.GetCurrentMethod());
-            }
-
-            if (car.Count < 1)
-            {
-                throw new Exception().FromMethod($"Значение {nameof(car.Count)} не может быть меньше 1", MethodBase.GetCurrentMethod());
-            }
-
-           
-
-            using (SQLiteConnection Connection = new SQLiteConnection(SqliteConnectionString.ConnectionString))
-            {
-                Connection.Open();
-              
-
-                string commandTextCollor = $"UPDATE CarExtra SET AndroidSystem=:AndroidSystem, CastWheel=:CastWheel, CruiseControl=:CruiseControl WHERE ID_Car = {car.ID}";
-
-                int CountAddInColorTable = 0;
-                using (var Command = new SQLiteCommand(commandTextCollor, Connection))
-                {
-                    Command.Parameters.Add("AndroidSystem",DbType.Int32).Value = Convert.ToInt32(car.Equipment.Extras.AndroidSystem);
-                    Command.Parameters.Add("CastWheel", DbType.Int32).Value = Convert.ToInt32(car.Equipment.Extras.CastWheel);
-                    Command.Parameters.Add("CruiseControl", DbType.Int32).Value = Convert.ToInt32(car.Equipment.Extras.CruiseControl);
-
-                    //Command.Parameters.AddWithValue("@AndroidSystem", Convert.ToInt32(car.Equipment.Extras.AndroidSystem));
-                    //Command.Parameters.AddWithValue("@CastWheel", Convert.ToInt32(car.Equipment.Extras.CastWheel));
-                    //Command.Parameters.AddWithValue("@CruiseControl", Convert.ToInt32(car.Equipment.Extras.CruiseControl));
-
-                    CountAddInColorTable = Command.ExecuteNonQuery();
-                }
-
-                if (CountAddInColorTable == 0)
-                {
-                    throw new Exception().FromMethod("Ошибка записи в таблицу CarExtra", MethodBase.GetCurrentMethod());
-                }
-
-                //string commandTextExtra = "INSERT INTO CarExtra ([ID],[ID_Car], [AndroidSystem],[CastWheel],[CruiseControl]) VALUES(@ID, @ID_Car, @AndroidSystem, @CastWheel, @CruiseControl)";
-                //int CountAddInExtraTable = 0;
-                //using (var Command = new SQLiteCommand(commandTextExtra, Connection))
-                //{
-                //    Command.Parameters.AddWithValue("@ID", newCarExtraId);
-                //    Command.Parameters.AddWithValue("@ID_Car", newCarId);
-                //    Command.Parameters.AddWithValue("@AndroidSystem", Convert.ToInt32(car.Equipment.Extras.AndroidSystem));
-                //    Command.Parameters.AddWithValue("@CastWheel", Convert.ToInt32(car.Equipment.Extras.CastWheel));
-                //    Command.Parameters.AddWithValue("@CruiseControl", Convert.ToInt32(car.Equipment.Extras.CruiseControl));
-
-                //    CountAddInExtraTable = Command.ExecuteNonQuery();
-                //}
-
-                //if (CountAddInExtraTable == 0)
-                //{
-                //    throw new Exception().FromMethod("Ошибка записи в таблицу CarExtra", MethodBase.GetCurrentMethod());
-                //}
-
-                //string commandText = "INSERT INTO Cars ([ID],[Name], [ModelID], [ColorID], [Price],[EngineID],[ExtrasID],[Count],[Photo]) VALUES(@ID, @Name, @ModelID, @ColorID, @Price, @EngineID, @ExtrasID, @Count, @Photo)";
-
-                //using (var Command = new SQLiteCommand(commandText, Connection))
-                //{
-
-
-                //    Command.Parameters.AddWithValue("@ID", newCarId);
-                //    Command.Parameters.AddWithValue("@Name", car.Name);
-                //    Command.Parameters.AddWithValue("@ModelID", 1);
-                //    Command.Parameters.AddWithValue("@ColorID", newCarColorId);
-                //    Command.Parameters.AddWithValue("@Price", car.Cost);
-                //    Command.Parameters.AddWithValue("@EngineID", car.Equipment.Engine.ID);
-                //    Command.Parameters.AddWithValue("@ExtrasID", newCarExtraId);
-                //    Command.Parameters.AddWithValue("@Count", car.Count);
-                //    Command.Parameters.AddWithValue("@Photo", imageByte);
-
-                //    var returnResutCars = Command.ExecuteNonQuery();
-
-                //    result = returnResutCars > 0;
-                //}
-
-
-            }
-
-            return result;
-        }
-
         /// <summary>
         /// Добавить новый двигатель в БД
         /// </summary>
@@ -384,6 +252,68 @@ namespace Dealership.SQL.Repository
 
         }
 
+        public bool DeleteCarFromBd(ICar car)
+        {
+            bool result = false;
+            if (car != null)
+            {
+                using (SQLiteConnection Connection = new SQLiteConnection(SqliteConnectionString.ConnectionString))
+                {
+                    Connection.Open();
+                    string commandText = $"DELETE FROM Cars WHERE ID = {car.ID}";
+                    using (var Command = new SQLiteCommand(commandText, Connection))
+                    {
+                        var returnCountRow = Command.ExecuteNonQuery();
+                    }
+
+                    //Увеличиваем кол-во машин в наличии на 1 (Снято с резерва)
+                    string commandTextCarCount = $"UPDATE Cars SET Count = Count+1 WHERE ID ='{car.ID}' ";
+                    using (var Command = new SQLiteCommand(commandTextCarCount, Connection))
+                    {
+                        var returnCountRow = Command.ExecuteNonQuery();
+                        result = returnCountRow > 0;
+                    }
+                }
+            }
+
+            return result;
+        }
+
+        public bool AddCarInCart(ICar car,IPerson buyer)
+        {
+            bool result = false;
+
+            using (SQLiteConnection Connection = new SQLiteConnection(SqliteConnectionString.ConnectionString))
+            {
+                Connection.Open();
+                string commandText = "INSERT INTO Cart ([Buyer_ID], [ID_Car]) VALUES(@Buyer_ID, @ID_Car)";
+                using (var Command = new SQLiteCommand(commandText, Connection))
+                {
+                    Command.Parameters.AddWithValue("@Buyer_ID", buyer.ID);
+                    Command.Parameters.AddWithValue("@ID_Car", car.ID);
+
+                
+                    var returnCountRow = Command.ExecuteNonQuery();
+
+                    result = returnCountRow > 0;
+                }
+
+                //Уменьшаем кол-во машин в наличии на 1 (зарезервированно)
+                string commandTextCarCount = $"UPDATE Cars SET Count = Count-1 WHERE ID ='{car.ID}' AND Count > 0 ";
+                using (var Command = new SQLiteCommand(commandTextCarCount, Connection))
+                {
+                    
+                    var returnCountRow = Command.ExecuteNonQuery();
+
+                    result = returnCountRow > 0;
+                }
+
+            }
+
+            return result;
+        }
+
+        #region Private
         /// <summary>
         /// Получаем с БД оборудование и доп.опции и возвращаем готовую модель
         /// </summary>
@@ -411,8 +341,45 @@ namespace Dealership.SQL.Repository
 
             return equipment;
         }
+        private BitmapImage GetPhotoFromBd(long IdCar)
+        {
+            byte[] _dbImageBytes = null;
+            using (SQLiteConnection Connection = new SQLiteConnection(SqliteConnectionString.ConnectionString))
+            {
+                Connection.Open();
+                string Querry = $"select photo from cars where id='{IdCar}'";
 
 
+                using (var command = new SQLiteCommand(Querry, Connection))
+                {
+                    using (var reader = command.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            if (reader["photo"] != DBNull.Value)
+                                _dbImageBytes = (byte[])reader["photo"];
+                        }
+                    }
+                }
+            }
+
+            if (_dbImageBytes == null) return null;
+
+            var image = new BitmapImage();
+            using (var mem = new MemoryStream(_dbImageBytes))
+            {
+                mem.Position = 0;
+                image.BeginInit();
+                image.CreateOptions = BitmapCreateOptions.PreservePixelFormat;
+                image.CacheOption = BitmapCacheOption.OnLoad;
+                image.UriSource = null;
+                image.StreamSource = mem;
+                image.EndInit();
+            }
+            image.Freeze();
+            return image;
+
+        }
         private long GetNewCarID()
         {
 
@@ -439,7 +406,6 @@ namespace Dealership.SQL.Repository
                 }
             }
         }
-
         private long GetNewCarColorID()
         {
 
@@ -453,6 +419,9 @@ namespace Dealership.SQL.Repository
                 }
             }
         }
+
+        #endregion
+
 
     }
 }

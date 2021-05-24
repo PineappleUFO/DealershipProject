@@ -8,7 +8,7 @@
              d:DesignHeight="450" d:DesignWidth="800">
     <Border BorderBrush="Aqua" BorderThickness="0" CornerRadius="10">
         <Grid >
-            <Label FontSize="24" HorizontalAlignment="Center" VerticalAlignment="Center" Content="{Binding Title}"></Label>
+            <Label FontSize="24" HorizontalAlignment="Center" VerticalAlignment="Center">Добро пожаловать в диллерский центр</Label>
         </Grid>
     </Border>
 </UserControl>

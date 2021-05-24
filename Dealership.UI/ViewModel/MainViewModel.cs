@@ -1,6 +1,8 @@
 ﻿using System.Windows.Input;
+using Dealership.SQL.Models.PersonModel;
 using Dealership.UI.MVVM;
 using Dealership.UI.MVVM.Commands;
+using Dealership.UI.View;
 using Dealership.UI.View.HomeView;
 
 namespace Dealership.UI.ViewModel
@@ -15,10 +17,10 @@ namespace Dealership.UI.ViewModel
         }
         public ICommand UpdateViewCommand { get; set; }
 
-        public MainViewModel()
+        public MainViewModel(EnumSelectedPerson person,IPerson currentUser)
         {
             SelectedViewModel = new HomeViewModel();
-            UpdateViewCommand = new UpdateViewCommand(this);
+            UpdateViewCommand = new UpdateViewCommand(this,person,currentUser);
         }
     }
 }

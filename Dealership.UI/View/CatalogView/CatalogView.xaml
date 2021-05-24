@@ -9,92 +9,94 @@
              xmlns:converters="clr-namespace:Dealership.UI.Converters"
              mc:Ignorable="d" 
              d:DesignHeight="900" d:DesignWidth="1300">
-<UserControl.Resources>
-    <converters:StringToColorConverter x:Key="StringToColorConverter"/>
+    <UserControl.Resources>
+        <converters:StringToColorConverter x:Key="StringToColorConverter"/>
         <Style TargetType="{x:Type Label}">
-        <Setter Property="FontFamily" Value="Verdana"/>
-    </Style>
-    <Style TargetType="{x:Type Button}">
-        <Setter Property="FontFamily" Value="Verdana"/>
-    </Style>
-
+            <Setter Property="FontFamily" Value="Verdana"/>
+        </Style>
+        <Style TargetType="{x:Type Button}">
+            <Setter Property="FontFamily" Value="Verdana"/>
+        </Style>
+        <Style TargetType="{x:Type CheckBox}">
+            <Setter Property="FontSize" Value="24"/>
+        </Style>
     </UserControl.Resources>
-        <Border BorderBrush="Aqua" BorderThickness="0" CornerRadius="10">
+    <Border BorderBrush="Aqua" BorderThickness="0" CornerRadius="10">
 
 
-            <Grid >
+        <Grid x:Name="grid" >
 
-                <Grid.RowDefinitions>
-                    <RowDefinition/>
-                    <RowDefinition Height="Auto"/>
-                </Grid.RowDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
 
-            <ListBox ItemsSource="{Binding AllCarsCollection}"  SelectionMode="Single" SelectedItem="{Binding SelectedCar}" Height="853" VerticalAlignment="Top">
+            <ListBox x:Name="listBox" ItemsSource="{Binding AllCarsCollection}"  SelectionMode="Single" SelectedItem="{Binding SelectedCar}" Height="auto" VerticalAlignment="Stretch">
                 <ListBox.ItemTemplate>
                     <DataTemplate>
-                            <Border materialDesign:ShadowAssist.ShadowDepth="Depth2" Height="600" Width="320" BorderThickness="2" BorderBrush="Black" CornerRadius="10" Background="#FFA4D4CE">
+                        <Border materialDesign:ShadowAssist.ShadowDepth="Depth2" Height="600" Width="320" BorderThickness="2" BorderBrush="Black" CornerRadius="10" Background="#FFA4D4CE">
 
-                                <Grid>
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="auto"/>
+                                    <RowDefinition Height="*"/>
+                                    <RowDefinition Height="*"/>
+                                    <RowDefinition Height="auto"/>
+                                </Grid.RowDefinitions>
+
+                                <Label Foreground="White" Grid.Row="0" HorizontalAlignment="Center" Margin="2" FontSize="24" FontWeight="Bold" Content="{Binding Name}"/>
+                                <Image Margin="1" Grid.Row="1" RenderOptions.BitmapScalingMode="HighQuality" Source="{Binding Photo}"></Image>
+
+                                <Grid Grid.Row="2">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition/>
+                                        <ColumnDefinition/>
+                                        <ColumnDefinition/>
+                                        <ColumnDefinition/>
+                                    </Grid.ColumnDefinitions>
                                     <Grid.RowDefinitions>
-                                        <RowDefinition Height="auto"/>
-                                        <RowDefinition Height="*"/>
-                                        <RowDefinition Height="*"/>
-                                        <RowDefinition Height="auto"/>
+                                        <RowDefinition/>
+                                        <RowDefinition/>
+                                        <RowDefinition/>
+                                        <RowDefinition/>
+                                        <RowDefinition/>
+                                        <RowDefinition/>
                                     </Grid.RowDefinitions>
 
-                                    <Label Foreground="White" Grid.Row="0" HorizontalAlignment="Center" Margin="2" FontSize="24" FontWeight="Bold" Content="{Binding Name}"/>
-                                    <Image Margin="1" Grid.Row="1" Source="{Binding Photo}"></Image>
+                                    <Label Grid.ColumnSpan="2" HorizontalAlignment="Center"  Grid.Column="0" Grid.Row="0" Foreground="#FFE84F4F" FontWeight="Bold">Двигатель</Label>
+                                    <Label Grid.Row="1" Grid.Column="0" VerticalAlignment="Center">Мощность</Label>
+                                    <Label Grid.Row="1" Grid.Column="1" FontWeight="Bold" VerticalAlignment="Center" HorizontalAlignment="Center" Content="{Binding Path=Equipment.Engine.Power}"></Label>
+                                    <Label Grid.Row="2" Grid.Column="0" VerticalAlignment="Center">Расход</Label>
+                                    <Label Grid.Row="2" Grid.Column="1" FontWeight="Bold" VerticalAlignment="Center" HorizontalAlignment="Center" Content="{Binding Path=Equipment.Engine.Expenditure}"></Label>
 
-                                    <Grid Grid.Row="2">
-                                        <Grid.ColumnDefinitions>
-                                            <ColumnDefinition/>
-                                            <ColumnDefinition/>
-                                            <ColumnDefinition/>
-                                            <ColumnDefinition/>
-                                        </Grid.ColumnDefinitions>
-                                        <Grid.RowDefinitions>
-                                            <RowDefinition/>
-                                            <RowDefinition/>
-                                            <RowDefinition/>
-                                            <RowDefinition/>
-                                            <RowDefinition/>
-                                            <RowDefinition/>
-                                        </Grid.RowDefinitions>
-
-                                        <Label Grid.ColumnSpan="2" HorizontalAlignment="Center"  Grid.Column="0" Grid.Row="0" Foreground="#FFE84F4F" FontWeight="Bold">Двигатель</Label>
-                                        <Label Grid.Row="1" Grid.Column="0" VerticalAlignment="Center">Мощность</Label>
-                                        <Label Grid.Row="1" Grid.Column="1" FontWeight="Bold" VerticalAlignment="Center" HorizontalAlignment="Center" Content="{Binding Path=Equipment.Engine.Power}"></Label>
-                                        <Label Grid.Row="2" Grid.Column="0" VerticalAlignment="Center">Расход</Label>
-                                        <Label Grid.Row="2" Grid.Column="1" FontWeight="Bold" VerticalAlignment="Center" HorizontalAlignment="Center" Content="{Binding Path=Equipment.Engine.Expenditure}"></Label>
-
-                                        <Label Grid.ColumnSpan="2" HorizontalAlignment="Center" Grid.Column="2" Grid.Row="0" Foreground="#FFE84F4F" FontWeight="Bold">Доп. опции</Label>
-                                        <TextBlock TextWrapping="Wrap" TextAlignment="Left" Grid.Row="1" Grid.Column="2">Мультимедия Android</TextBlock>
-                                        <CheckBox Grid.Column="3" VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Row="1" IsChecked="{Binding Path=Equipment.Extras.AndroidSystem}" Panel.ZIndex="5" Background="White" IsEnabled="False"></CheckBox>
+                                    <Label Grid.ColumnSpan="2" HorizontalAlignment="Center" Grid.Column="2" Grid.Row="0" Foreground="#FFE84F4F" FontWeight="Bold">Доп. опции</Label>
+                                    <TextBlock TextWrapping="Wrap" TextAlignment="Left" Grid.Row="1" Grid.Column="2">Мультимедия Android</TextBlock>
+                                    <CheckBox Grid.Column="3" VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Row="1" IsChecked="{Binding Path=Equipment.Extras.AndroidSystem}" Panel.ZIndex="5" Background="White" IsEnabled="False"></CheckBox>
 
                                     <TextBlock TextWrapping="Wrap"  TextAlignment="Left" Grid.Row="2" Grid.Column="2">Литые диски</TextBlock>
-                                        <CheckBox Grid.Column="3" VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Row="2" IsChecked="{Binding Path=Equipment.Extras.CastWheel}" Background="White" IsEnabled="False"></CheckBox>
+                                    <CheckBox Grid.Column="3" VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Row="2" IsChecked="{Binding Path=Equipment.Extras.CastWheel}" Background="White" IsEnabled="False"></CheckBox>
 
                                     <TextBlock TextWrapping="Wrap"  TextAlignment="Left" Grid.Row="3" Grid.Column="2">Круиз контроль</TextBlock>
-                                        <CheckBox Grid.Column="3" VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Row="3" IsChecked="{Binding Path=Equipment.Extras.CruiseControl}" Background="White" IsEnabled="False"></CheckBox>
+                                    <CheckBox Grid.Column="3" VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Row="3" IsChecked="{Binding Path=Equipment.Extras.CruiseControl}" Background="White" IsEnabled="False"></CheckBox>
 
-                                        <Label Grid.Row="4" Grid.Column="0" VerticalAlignment="Center">Цвет</Label>
-                                        <Rectangle Grid.Row="4" Grid.Column="1" Height="20" Width="20" HorizontalAlignment="Center" VerticalAlignment="Center" Fill="{Binding Path=Color.ColorCode,Converter={StaticResource StringToColorConverter}}"/>
+                                    <Label Grid.Row="4" Grid.Column="0" VerticalAlignment="Center">Цвет</Label>
+                                    <Rectangle Grid.Row="4" Grid.Column="1" Height="20" Width="20" HorizontalAlignment="Center" VerticalAlignment="Center" Fill="{Binding Path=Color.ColorCode,Converter={StaticResource StringToColorConverter}}"/>
 
-                                        <Label Grid.Row="5" Grid.Column="0" VerticalAlignment="Center">Стоимость</Label>
-                                        <Label Grid.Row="5" Grid.Column="1" Grid.ColumnSpan="3" Foreground="White" FontSize="24" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center"  Content="{Binding Cost,StringFormat=\{0:C\}}"></Label>
-                                    </Grid>
-
-                                    <Button Grid.Row="3" Margin="5"   Background="#FF8CBFBF" Padding="0">
-                                        <StackPanel Orientation="Horizontal">
-                                            <materialDesign:PackIcon VerticalAlignment="Center" Kind="Cart" Foreground="White" />
-                                            <Label VerticalAlignment="Center" FontWeight="Bold" Foreground="#FFE84F4F">В корзину</Label>
-                                        </StackPanel>
-                                    </Button>
-
+                                    <Label Grid.Row="5" Grid.Column="0" VerticalAlignment="Center">Стоимость</Label>
+                                    <Label Grid.Row="5" Grid.Column="1" Grid.ColumnSpan="3" Foreground="White" FontSize="24" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center"  Content="{Binding Cost,StringFormat=\{0:C\}}"></Label>
                                 </Grid>
-                            </Border>
 
-                        </DataTemplate>
+                                <Button Grid.Row="3" Margin="5"   Background="#FF8CBFBF" Padding="0" Command="{Binding ElementName=listBox,Path=DataContext.AddCarInCart}"  CommandParameter="{Binding }" >
+                                    <StackPanel Orientation="Horizontal">
+                                        <materialDesign:PackIcon VerticalAlignment="Center" Kind="Cart" Foreground="White" />
+                                        <Label VerticalAlignment="Center" FontWeight="Bold" Foreground="#FFE84F4F">В корзину</Label>
+                                    </StackPanel>
+                                </Button>
+
+                            </Grid>
+                        </Border>
+
+                    </DataTemplate>
                 </ListBox.ItemTemplate>
                 <ListBox.ItemsPanel>
                     <ItemsPanelTemplate>
@@ -102,18 +104,16 @@
                     </ItemsPanelTemplate>
                 </ListBox.ItemsPanel>
 
-            
+
             </ListBox>
 
-            <Grid Grid.Row="1" Margin="5">
+            <Grid Grid.Row="1" Margin="5" Visibility="{Binding ManagerVisible}">
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition/>
                     <ColumnDefinition/>
                     <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
                 <Button Grid.Column="0" FontSize="24" Margin="2" Command="{Binding OpenAddCarView}">Добавить автомобиль</Button>
-                <Button Grid.Column="1" FontSize="24" Margin="2" Command="{Binding OpenEditCarView}">Редактировать выбранный авто</Button>
-                <Button Grid.Column="2" FontSize="24" Margin="2">Удалить выбранный авто</Button>
+                <Button Grid.Column="1" FontSize="24" Margin="2" Command="{Binding DeleteCar}">Удалить выбранный авто</Button>
             </Grid>
 
         </Grid>

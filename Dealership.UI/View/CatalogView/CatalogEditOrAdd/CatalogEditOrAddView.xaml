@@ -9,6 +9,7 @@
         TextElement.FontWeight="Regular"
         TextElement.FontSize="13"
         TextOptions.TextFormattingMode="Ideal" 
+        Topmost="True"
         TextOptions.TextRenderingMode="Auto"        
         FontFamily="{DynamicResource MaterialDesignFont}"
         Title="Добавление/Изменение автомобиля" Height="750" Width="800">
